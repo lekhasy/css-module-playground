@@ -1,9 +1,10 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const context = path.resolve(__dirname, 'src');
 
 module.exports = {
-    context: path.resolve(__dirname, 'src'),
+    context: context,
     entry: './Index.js',
     output: {
         filename: 'bundle.js',
@@ -27,7 +28,13 @@ module.exports = {
                         loader: MiniCssExtractPlugin.loader
                     },
                     {
-                        loader: 'css-loader?importLoader=1&modules&localIdentName=src-[path]___[name]__[local]___[hash:base64:5]',
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            modules: true,
+                            sourceMap: true,
+                            localIdentName: "[path]___[name]__[local]___[hash:base64:5]"
+                        }
                     }
                 ]
             }
@@ -36,6 +43,7 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'build')
     },
+    devtool: "inline-source-map", // inlines SourceMap into original file
     plugins: [
         new CopyWebpackPlugin([
             {

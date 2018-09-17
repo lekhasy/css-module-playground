@@ -8,7 +8,12 @@
             "react-css-modules",
             {
                 "generateScopedName": "[path]___[name]__[local]___[hash:base64:5]",
-                "context": "./src"
+                "context": "./src",
+                "filetypes": {
+                    ".scss": {
+                        "syntax": "postcss-scss"
+                    }
+                }
             }
         ]
     ]

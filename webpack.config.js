@@ -18,7 +18,7 @@ module.exports = {
                 loader: "babel-loader"
             },
             {
-                test: /\.css$/,
+                test: /\.(css|scss|sass)$/,
                 exclude: /node_modules/,
                 use: [
                     {
@@ -35,6 +35,15 @@ module.exports = {
                             sourceMap: true,
                             localIdentName: "[path]___[name]__[local]___[hash:base64:5]"
                         }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
+                        },
                     }
                 ]
             }
